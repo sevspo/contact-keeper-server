@@ -8,8 +8,17 @@ Content-Type: application/json
 
 {
   "name": "John Doe",
-  "email": "jdoe@example.com",
+  "email": "JohnD@example.com",
   "password": "123456"
 }
 
 ###
+
+POST http://localhost:5000/api/auth
+content-type: application/json
+
+{
+  "name": "John Doe",
+  "email": "JohnD@example.com",
+  "password": "123456"
+}
