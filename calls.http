@@ -27,9 +27,9 @@ content-type: application/json
 
 GET http://localhost:5000/api/auth
 content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1MTZiNzQ2YTU0Yjg4MjQxODkxIn0sImlhdCI6MTU4ODM1OTQwMCwiZXhwIjoxNTg4NzE5NDAwfQ.wHtBJR84el6cvc4hZ4PGYLFqaltkyu15PnkV03ei_Qg
 
 {
-  "name": "John Doe",
   "email": "JohnD@example.com",
   "password": "123456"
 }
