@@ -19,5 +19,5 @@
   },
   "peacock.color": "#7eec2b",
   "editor.formatOnSave": true,
-  "javascript.validate.enable": false
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
