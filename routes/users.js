@@ -1,23 +1,23 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require("express-validator/check");
-const bcrypt = require("bcryptjs");
-const User = require("../models/User");
-const jwt = require("jsonwebtoken");
-const config = require("config");
+const { check, validationResult } = require('express-validator/check');
+const bcrypt = require('bcryptjs');
+const User = require('../models/User');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 // @route  POST api/users
 // @des    Register a user
 // @access public
 
 router.post(
-  "/",
+  '/',
   [
-    check("name", "Please enter a name").not().isEmpty(),
-    check("email", "Please provide a valid email").isEmail(),
+    check('name', 'Please enter a name').not().isEmpty(),
+    check('email', 'Please provide a valid email').isEmail(),
     check(
-      "password",
-      "Please enter a password with min 6 characters"
+      'password',
+      'Please enter a password with min 6 characters'
     ).isLength({ min: 6 }),
   ],
   async (req, res) => {
@@ -33,7 +33,7 @@ router.post(
     try {
       let user = await User.findOne({ email });
       if (user) {
-        return res.status(400).json({ msg: "user already exists" });
+        return res.status(400).json({ msg: 'user already exists' });
       }
       user = new User({ name, email, password });
 
@@ -51,7 +51,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get("jwtSecret"),
+        config.get('jwtSecret'),
         {
           expiresIn: 360000,
         },
@@ -62,7 +62,7 @@ router.post(
       );
     } catch (error) {
       console.error(error.message);
-      res.status(500).send("Server Error");
+      res.status(500).send('Server Error');
     }
   }
 );

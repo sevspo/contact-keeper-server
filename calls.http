@@ -1,8 +1,4 @@
-
-GET http://localhost:5000
-
-###
-
+### Register User
 POST http://localhost:5000/api/users
 Content-Type: application/json
 
@@ -12,8 +8,28 @@ Content-Type: application/json
   "password": "123456"
 }
 
-###
 
+
+### Get Contacts
+GET http://localhost:5000/api/contacts
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1MTZiNzQ2YTU0Yjg4MjQxODkxIn0sImlhdCI6MTU4ODQxMDY4MCwiZXhwIjoxNTg4NzcwNjgwfQ.AjcWesOuWWcDLHypsdne9zibZi0cHor3yTC1yIBHPdE
+
+
+### Save Contact
+POST http://localhost:5000/api/contacts
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1MTZiNzQ2YTU0Yjg4MjQxODkxIn0sImlhdCI6MTU4ODQxMDY4MCwiZXhwIjoxNTg4NzcwNjgwfQ.AjcWesOuWWcDLHypsdne9zibZi0cHor3yTC1yIBHPdE
+
+{
+  "name": "Severin",
+  "email": "ses@ses",
+  "phone": "079 848",
+  "type": "personal"
+}
+
+
+### Login user and get token
 POST http://localhost:5000/api/auth
 content-type: application/json
 
@@ -23,13 +39,10 @@ content-type: application/json
   "password": "123456"
 }
 
-####
 
+
+#### get logged in user
 GET http://localhost:5000/api/auth
 content-type: application/json
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1MTZiNzQ2YTU0Yjg4MjQxODkxIn0sImlhdCI6MTU4ODM1OTQwMCwiZXhwIjoxNTg4NzE5NDAwfQ.wHtBJR84el6cvc4hZ4PGYLFqaltkyu15PnkV03ei_Qg
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1MTZiNzQ2YTU0Yjg4MjQxODkxIn0sImlhdCI6MTU4ODQxMDY4MCwiZXhwIjoxNTg4NzcwNjgwfQ.AjcWesOuWWcDLHypsdne9zibZi0cHor3yTC1yIBHPdE
 
-{
-  "email": "JohnD@example.com",
-  "password": "123456"
-}
