@@ -8,15 +8,17 @@ Content-Type: application/json
   "password": "123456"
 }
 
+################################################
+###################### CONTACTS ################
 
-
-### Get Contacts
+################### Get Contacts
 GET http://localhost:5000/api/contacts
 Content-Type: application/json
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1MTZiNzQ2YTU0Yjg4MjQxODkxIn0sImlhdCI6MTU4ODQxMDY4MCwiZXhwIjoxNTg4NzcwNjgwfQ.AjcWesOuWWcDLHypsdne9zibZi0cHor3yTC1yIBHPdE
 
 
-### Save Contact
+
+################# Save Contact
 POST http://localhost:5000/api/contacts
 Content-Type: application/json
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1MTZiNzQ2YTU0Yjg4MjQxODkxIn0sImlhdCI6MTU4ODQxMDY4MCwiZXhwIjoxNTg4NzcwNjgwfQ.AjcWesOuWWcDLHypsdne9zibZi0cHor3yTC1yIBHPdE
@@ -28,6 +30,23 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1M
   "type": "personal"
 }
 
+############### Update Contact
+PUT http://localhost:5000/api/contacts/5ead3cf59a34f23b0c7d981d
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1MTZiNzQ2YTU0Yjg4MjQxODkxIn0sImlhdCI6MTU4ODQxMDY4MCwiZXhwIjoxNTg4NzcwNjgwfQ.AjcWesOuWWcDLHypsdne9zibZi0cHor3yTC1yIBHPdE
+
+{
+  "phone": "079 848 88 44"
+}
+
+############### delete Contact
+DELETE http://localhost:5000/api/contacts/5ead3cf59a34f23b0c7d981d
+Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1MTZiNzQ2YTU0Yjg4MjQxODkxIn0sImlhdCI6MTU4ODQxMDY4MCwiZXhwIjoxNTg4NzcwNjgwfQ.AjcWesOuWWcDLHypsdne9zibZi0cHor3yTC1yIBHPdE
+
+
+################################################
+###################### AUTH ####################
 
 ### Login user and get token
 POST http://localhost:5000/api/auth
@@ -45,4 +64,3 @@ content-type: application/json
 GET http://localhost:5000/api/auth
 content-type: application/json
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5Mzg1MTZiNzQ2YTU0Yjg4MjQxODkxIn0sImlhdCI6MTU4ODQxMDY4MCwiZXhwIjoxNTg4NzcwNjgwfQ.AjcWesOuWWcDLHypsdne9zibZi0cHor3yTC1yIBHPdE
-

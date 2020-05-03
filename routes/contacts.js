@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator/check');
+const { check, validationResult } = require('express-validator');
 const Contact = require('../models/Contact');
 const User = require('../models/User');
 const auth = require('../middleware/auth');
@@ -57,16 +57,57 @@ router.post(
 // @desc    Update contact
 // @access  private
 
-router.put('/:id', (req, res) => {
-  res.send('Update contact');
+router.put('/:id', auth, async (req, res) => {
+  const { name, email, phone, type } = req.body;
+
+  // build contact object
+  const contactFields = {};
+  if (name) contactFields.name = name;
+  if (email) contactFields.email = email;
+  if (phone) contactFields.phone = phone;
+  if (type) contactFields.type = type;
+
+  try {
+    let contact = await Contact.findById(req.params.id);
+    if (!contact) return res.status(404).json({ msg: 'Contact not found' });
+
+    // make sure user owns the contact
+    if (contact.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'user not authorized' });
+    }
+
+    contact = await Contact.findByIdAndUpdate(
+      req.params.id,
+      { $set: contactFields },
+      { new: true }
+    );
+    res.json(contact);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('server error');
+  }
 });
 
 // @route   DELETE api/contacts/id
 // @desc    Delete contact
 // @access  private
 
-router.delete('/:id', (req, res) => {
-  res.send('Delete contact');
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    let contact = await Contact.findById(req.params.id);
+    if (!contact) return res.status(404).json({ msg: 'Contact not found' });
+
+    // make sure user owns the contact
+    if (contact.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'user not authorized' });
+    }
+
+    await Contact.findByIdAndRemove(req.params.id);
+    res.json({ msg: 'contact removed' });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('server error');
+  }
 });
 
 module.exports = router;
